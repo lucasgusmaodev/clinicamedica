@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #0a5b55;
+      --secondary: #14b8a6;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --text: #1e293b;
+      --text-soft: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .logo span {
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 8px 18px rgba(15,118,110,0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding-top: 140px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0.7)),
+        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1600&auto=format&fit=crop') center/cover;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero span {
+      color: var(--primary);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      line-height: 1.1;
+      margin: 18px 0;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* STATS */
+
+    .stats {
+      margin-top: -60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card h3 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .stat-card p {
+      color: var(--text-soft);
+      margin-top: 8px;
+    }
+
+    /* SECTION DEFAULT */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-header span {
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-header h2 {
+      font-size: 2.7rem;
+      margin-top: 12px;
+    }
+
+    .section-header p {
+      max-width: 700px;
+      margin: 15px auto 0;
+      color: var(--text-soft);
+    }
+
+    /* ABOUT */
+
+    .about-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-image img {
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-text h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .features {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature-box {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-box h4 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    /* SERVICES */
+
+    .services {
+      background: white;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--light);
+      padding: 35px;
+      border-radius: 22px;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(20,184,166,0.3);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(20,184,166,0.15);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--text-soft);
+    }
+
+    /* TEAM */
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .team-card img {
+      height: 340px;
+      object-fit: cover;
+    }
+
+    .team-info {
+      padding: 25px;
+    }
+
+    .team-info h3 {
+      margin-bottom: 6px;
+    }
+
+    .team-info p {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* TESTIMONIALS */
+
+    .testimonials {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .testimonials .section-header span,
+    .testimonials .section-header p {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 35px;
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .testimonial-card p {
+      margin-bottom: 22px;
+    }
+
+    .testimonial-user {
+      font-weight: 600;
+    }
+
+    /* CONTACT */
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .contact-info {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-item {
+      margin-bottom: 28px;
+    }
+
+    .contact-item h4 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .contact-form {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      outline: none;
+      font-family: inherit;
+      resize: none;
+      transition: var(--transition);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 4px rgba(20,184,166,0.1);
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 80px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-about p {
+      color: rgba(255,255,255,0.7);
+      margin-top: 20px;
+      max-width: 450px;
+    }
+
+    .footer-links h4 {
+      margin-bottom: 20px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width: 992px) {
+      .stats-grid,
+      .services-grid,
+      .team-grid,
+      .testimonials-grid,
+      .about-content,
+      .contact-content,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .mobile-menu {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 30px;
+        display: none;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .navbar .btn-primary {
+        display: none;
+      }
+
+      .stats-grid,
+      .services-grid,
+      .team-grid,
+      .testimonials-grid,
+      .about-content,
+      .contact-content,
+      .footer-grid,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="container navbar">
+      <a href="#" class="logo">Clínica<span>médica</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <a href="#contato" class="btn btn-primary">Agendar Consulta</a>
+
+      <div class="mobile-menu" id="mobileMenu">☰</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-content">
+        <span>Sua saúde em boas mãos</span>
+        <h1>Excelência em odontologia moderna e humanizada.</h1>
+        <p>
+          Tratamentos odontológicos completos com tecnologia avançada,
+          conforto e profissionais especializados para transformar seu sorriso.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#contato" class="btn btn-primary">Marcar Avaliação</a>
+          <a href="#servicos" class="btn btn-outline">Nossos Serviços</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <h3>+12</h3>
+          <p>Anos de experiência</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>+5mil</h3>
+          <p>Pacientes atendidos</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>98%</h3>
+          <p>Satisfação dos clientes</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>24h</h3>
+          <p>Atendimento emergencial</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="sobre">
+    <div class="container">
+
+      <div class="section-header">
+        <span>Sobre Nós</span>
+        <h2>Uma clínica pensada para o seu conforto</h2>
+        <p>
+          Nossa missão é oferecer tratamentos odontológicos de excelência,
+          combinando tecnologia, cuidado humanizado e resultados duradouros.
+        </p>
+      </div>
+
+      <div class="about-content">
+
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop" alt="Clínica odontológica">
+        </div>
+
+        <div class="about-text">
+          <h3>Atendimento premium e tecnologia avançada</h3>
+
+          <p>
+            A Clínica foi criada para proporcionar uma experiência moderna,
+            confortável e segura aos pacientes.
+          </p>
+
+          <p>
+            Contamos com equipamentos de última geração, ambiente sofisticado
+            e uma equipe especializada em diversas áreas da odontologia.
+          </p>
+
+          <div class="features">
+
+            <div class="feature-box">
+              <h4>✔ Equipamentos modernos</h4>
+              <p>Tratamentos mais rápidos e precisos.</p>
+            </div>
+
+            <div class="feature-box">
+              <h4>✔ Atendimento humanizado</h4>
+              <p>Cuidado e atenção em cada consulta.</p>
+            </div>
+
+            <div class="feature-box">
+              <h4>✔ Ambiente confortável</h4>
+              <p>Estrutura premium para você relaxar.</p>
+            </div>
+
+            <div class="feature-box">
+              <h4>✔ Equipe especializada</h4>
+              <p>Dentistas altamente qualificados.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+
+  <section class="services" id="servicos">
+    <div class="container">
+
+      <div class="section-header">
+        <span>Nossos Serviços</span>
+        <h2>Especialidades odontológicas</h2>
+        <p>
+          Oferecemos tratamentos completos para cuidar da saúde e da estética do seu sorriso.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">😁</div>
+          <h3>Clareamento Dental</h3>
+          <p>
+            Técnicas modernas para um sorriso mais branco e natural.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🦷</div>
+          <h3>Implantes Dentários</h3>
+          <p>
+            Recuperação completa da estética e mastigação.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Lentes de Contato Dental</h3>
+          <p>
+            Transforme seu sorriso com naturalidade e sofisticação.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📐</div>
+          <h3>Ortodontia</h3>
+          <p>
+            Aparelhos modernos para alinhar seu sorriso.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">👶</div>
+          <h3>Odontopediatria</h3>
+          <p>
+            Atendimento especializado para crianças.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">❤️</div>
+          <h3>Prevenção e Limpeza</h3>
+          <p>
+            Cuidados preventivos para manter sua saúde bucal.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+
+  <section id="equipe">
+    <div class="container">
+
+      <div class="section-header">
+        <span>Equipe</span>
+        <h2>Profissionais especializados</h2>
+        <p>
+          Nossa equipe é formada por especialistas experientes e apaixonados por transformar sorrisos.
+        </p>
+      </div>
+
+      <div class="team-grid">
+
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop" alt="Pediatria">
+          <div class="team-info">
+            <h3>Dra. Ana Oliveira</h3>
+            <p>Pediatra</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1200&auto=format&fit=crop" alt="Fisoterapia">
+          <div class="team-info">
+            <h3>Dra. Luiza Souza</h3>
+            <p>Fisioterapeuta</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1200&auto=format&fit=crop" alt="Odontologia">
+          <div class="team-info">
+            <h3>Dra. Mariana Costa</h3>
+            <p>Odontologia</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+
+  <section class="testimonials">
+    <div class="container">
+
+      <div class="section-header">
+        <span>Feedback</span>
+        <h2>O que nossos pacientes dizem</h2>
+        <p>
+          Veja a experiência de quem confiou no nosso trabalho.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <p>
+            “Atendimento impecável, estrutura moderna e profissionais extremamente atenciosos.”
+          </p>
+          <div class="testimonial-user">— Juliana Martins</div>
+        </div>
+
+        <div class="testimonial-card">
+          <p>
+            “Minha experiência foi excelente do início ao fim. Recomendo muito a clínica.”
+          </p>
+          <div class="testimonial-user">— Carlos Henrique</div>
+        </div>
+
+        <div class="testimonial-card">
+          <p>
+            “Consegui recuperar minha autoestima com o tratamento estético. Resultado incrível.”
+          </p>
+          <div class="testimonial-user">— Fernanda Alves</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contato">
+    <div class="container">
+
+      <div class="section-header">
+        <span>Contato</span>
+        <h2>Agende sua consulta</h2>
+        <p>
+          Entre em contato conosco e dê o primeiro passo para transformar seu sorriso.
+        </p>
+      </div>
+
+      <div class="contact-content">
+
+        <div class="contact-info">
+
+          <div class="contact-item">
+            <h4>📍 Endereço</h4>
+            <p>Av. Principal, 1000 - Centro</p>
+          </div>
+
+          <div class="contact-item">
+            <h4>📞 Telefone</h4>
+            <p>(91) 99999-9999</p>
+          </div>
+
+          <div class="contact-item">
+            <h4>✉ E-mail</h4>
+            <p>contato@clinica.com</p>
+          </div>
+
+          <div class="contact-item">
+            <h4>🕒 Horário</h4>
+            <p>Segunda a Sexta • 08h às 19h</p>
+          </div>
+
+        </div>
+
+        <div class="contact-form">
+          <form>
+            <input type="text" placeholder="Seu nome" required>
+            <input type="email" placeholder="Seu e-mail" required>
+            <input type="tel" placeholder="Seu telefone">
+            <textarea rows="5" placeholder="Digite sua mensagem"></textarea>
+            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-about">
+          <h2>Clínica</h2>
+          <p>
+            Clínica moderna especializada em proporcionar saúde,
+            conforto e autoestima através de tratamentos personalizados.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Nossas Redes Sociais</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">WhatsApp</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Clínica — Desenvolvido por <strong>Lucas Gusmão</strong>.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
